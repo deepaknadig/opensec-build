@@ -13,7 +13,7 @@ before_install:
 - cd OpenSec
 - export ONOS_WEB_USER=onos
 - export ONOS_WEB_PASS=rocks
-- /bin/bash -c 'D_IP="$(ifconfig docker0 | grep "inet addr" | awk -F'[: ]+' '{ print $4 }')"'
+#~ - /bin/bash -c 'D_IP="$(ifconfig docker0 | grep "inet addr" | awk -F'[: ]+' '{ print $4 }')"'
 - ifconfig
 
 script:
