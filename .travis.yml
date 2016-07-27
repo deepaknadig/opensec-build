@@ -13,8 +13,11 @@ before_install:
 - cd OpenSec
 - export ONOS_WEB_USER=onos
 - export ONOS_WEB_PASS=rocks
+- export DOCKER_IP="$(ifconfig docker0 | grep "inet addr" | awk -F'[: ]+' '{ print $4 }')"
+- echo $DOCKER_IP
+- ifconfig
 
 
 script:
 - mvn clean install
-- curl -sS --user $ONOS_WEB_USER:$ONOS_WEB_PASS -X POST -HContent-Type:application/octet-stream 127.0.0.1:8181/onos/v1/applications?activate=true --data-binary @target/OpenSec-1.0.2.oar
+#~ - curl -sS --user $ONOS_WEB_USER:$ONOS_WEB_PASS -X POST -HContent-Type:application/octet-stream 127.0.0.1:8181/onos/v1/applications?activate=true --data-binary @target/OpenSec-1.0.2.oar
