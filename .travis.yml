@@ -6,11 +6,9 @@ services:
   - docker
   
 before_install:
-- docker pull deepnadig/docker-onos-dev
 - docker pull onosproject/onos
 - docker run -d onosproject/onos
 - docker ps -a
-- docker run -it deepnadig/docker-onos-dev /bin/bash 
 - git clone https://git.deepaknadig.com/deepak/OpenSec.git
 - cd OpenSec
 - export ONOS_WEB_USER=onos
@@ -19,4 +17,4 @@ before_install:
 
 script:
 - mvn clean install
-- /root/onos/tools/dev/bin/onos-app 127.0.0.1 install! target/OpenSec-1.0.2.oar
+- curl -sS --user $ONOS_WEB_USER:$ONOS_WEB_PASS -X POST -HContent-Type:application/octet-stream 127.0.0.1:8181/onos/v1/applications?activate=true --data-binary @target/OpenSec-1.0.2.oar
