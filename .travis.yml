@@ -10,13 +10,12 @@ before_install:
 - docker pull onosproject/onos
 - docker run -d onosproject/onos
 - docker ps -a
+- git clone https://git.deepaknadig.com/deepak/OpenSec.git
+- cd OpenSec
+- export ONOS_WEB_USER=onos
+- export ONOS_WEB_PASS=rocks
 
-test:
-  script:
-  - sleep 15
-  - export ONOS_WEB_USER=onos
-  - export ONOS_WEB_PASS=rocks
-  - git clone https://git.deepaknadig.com/deepak/OpenSec.git
-  - cd OpenSec
-  - mvn clean install
-  - /root/onos/tools/dev/bin/onos-app onosproject__onos install! target/OpenSec-1.0.2.oar
+
+script:
+- mvn clean install
+#~ - /root/onos/tools/dev/bin/onos-app 127.0.0.1 install! target/OpenSec-1.0.2.oar
