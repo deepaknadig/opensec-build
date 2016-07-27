@@ -1,8 +1,13 @@
-image: deepnadig/docker-onos-dev
+sudo: required
 
 services:
   - docker
-  - onosproject/onos
+  
+before_install:
+- docker pull deepnadig/docker-onos-dev
+- docker pull onosproject/onos
+- docker run -d onosproject/onos
+- docker ps -a
 
 test:
   script:
